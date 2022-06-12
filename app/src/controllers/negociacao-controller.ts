@@ -7,6 +7,7 @@ import { NegociacoesView } from "../views/negociacoes-view.js";
 import { inspect } from "../decorators/inspect.js";
 import { domInjector } from "../decorators/dom-injector.js";
 import { NegociacoesService } from "../services/negociacoes-service.js";
+import { imprimir } from "../utils/imprimir.js";
 
 export class NegociacaoController {
     @domInjector('#data')
@@ -35,7 +36,8 @@ export class NegociacaoController {
             this.mensagemView.update('Apenas negociacoes em dias uteis sao aceitas');
             return;
         }
-        this.negociacoes.adiciona(negociacao);                            
+        this.negociacoes.adiciona(negociacao);
+        imprimir(negociacao, this.negociacoes);
         this.limparFormulario();
         this.atualizaView();
     }
